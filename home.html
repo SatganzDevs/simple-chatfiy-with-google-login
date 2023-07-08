@@ -1,287 +1,351 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Chat Aja</title>
-  <link rel="icon" type="image/x-icon" href="favicon.png">
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <style>
-    body {
-      background-color: #f5f5f5;
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-    }
-    
-    #chat-container {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 20px;
-      background-color: #fff;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-      border-radius: 10px;
-      background-image: url('wallpaper.jpg'); /* Tambahkan URL wallpaper di sini */
-      background-size: cover;
-      background-position: center;
-      overflow-y: auto; /* Tambahkan overflow-y: auto; untuk mengaktifkan scroll jika konten melebihi batas */
-    }
-    
-    .message {
-      margin-bottom: 15px;
-      position: relative;
-    }
-    
-    .message .sender {
-      font-weight: bold;
-      margin-right: 5px;
-    }
-    
-    .message .content {
-      padding: 10px;
-      border-radius: 10px;
-      background-color: #e5e5ea;
-      display: inline-block;
-      max-width: 70%; /* Atur lebar maksimum sesuai kebutuhan */
-    }
-    
-    .message.sent .content {
-      background-color: #dcf8c6;
-    }
-    
-    .message.received .content {
-      background-color: #fff;
-    }
-    
-    #message-form {
-      display: flex;
-      margin-top: 20px;
-    }
-    
-    #message-input {
-      flex-grow: 1;
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-    }
-    
-    #message-form button {
-      padding: 10px;
-      background-color: limegreen;
-      color: #fff;
-      font-weight: bold;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-    
-    #message-form button:hover {
-      background-color: lime;
-    }
-    
-    #profile-nav {
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
-      padding: 10px;
-      background-color: #fff;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-      border-radius: 10px;
-      margin-bottom: 20px;
-    }
-    
-    #profile-nav a {
-      margin-left: 10px;
-      color: #333;
-      text-decoration: none;
-    }
-    
-    #typing-status {
-      display: flex;
-      align-items: center;
-      margin-bottom: 10px;
-      color: #000000;
-    }
-    
-    #typing-indicator {
-      width: 10px;
-      height: 10px;
-      background-color: limegreen;
-      border-radius: 50%;
-      margin-right: 6px;
-      opacity: 0;
-      animation: typing 2s infinite;
-    }
-    
-    @keyframes typing {
-      0% { opacity: 0.5; }
-      50% { opacity: 1; }
-      100% { opacity: 0.5; }
-    }
-    
-    .typing-active #typing-indicator {
-      opacity: 1;
-    }
-    
- #navbar {
-  background-color: #f5f5f5;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  padding: 10px;
-  display: flex;
-  align-items: center;
-  border-radius: 10px;
-  margin-bottom: 20px;
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chat Aja</title>
+<link rel="icon" type="image/x-icon" href="favicon.png">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<style>
+body {
+background-color: #f5f5f5;
+font-family: Arial, sans-serif;
+margin: 0;
+padding: 0;
+}
+#chat-container {
+margin: auto;
+text-align: left;
+overflow: auto;
+height: 70vh;
+width: 70vw;
+border: 3px black solid;
+border-radius: 15px;
 }
 
+#chat-container::-webkit-scrollbar-track{
+border-radius: 15px;
+background-color: gainsboro;
+}
+
+#chat-container::-webkit-scrollbar{
+width: 20px;
+}
+
+#chat-container::-webkit-scrollbar-thumb{
+height: 15px;
+border-radius: 15px;
+background-color: limegreen;
+}
+p {
+text-align: left;
+padding: 0px 10px;
+font-family: Pangolin;
+font-size: 16px;
+animation: fade_in 0.3s;
+}  
+.message {
+margin-bottom: 15px;
+position: relative;
+}
+.message .sender {
+font-weight: bold;
+margin-right: 5px;
+}
+.message .content {
+padding: 10px;
+border-radius: 10px;
+background-color: #e5e5ea;
+display: inline-block;
+max-width: 70%; /* Atur lebar maksimum sesuai kebutuhan */
+}
+.message.sent .content {
+background-color: #dcf8c6;
+}
+.message.received .content {
+background-color: #fff;
+}
+#message-form {
+display: flex;
+margin-top: 20px;
+}
+#message-input {
+flex-grow: 1;
+padding: 10px;
+border: 1px solid #ccc;
+border-radius: 5px;
+}
+#message-form button {
+padding: 10px;
+background-color: limegreen;
+color: #fff;
+font-weight: bold;
+border: none;
+border-radius: 5px;
+cursor: pointer;
+}
+#message-form button:hover {
+background-color: lime;
+}
+#profile-nav {
+display: flex;
+justify-content: flex-end;
+align-items: center;
+padding: 10px;
+background-color: #fff;
+box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+border-radius: 10px;
+margin-bottom: 20px;
+}
+#profile-nav a {
+margin-left: 10px;
+color: #333;
+text-decoration: none;
+}
+#typing-status {
+display: flex;
+align-items: center;
+margin-bottom: 10px;
+color: #000000;
+}
+#typing-indicator {
+width: 10px;
+height: 10px;
+background-color: limegreen;
+border-radius: 50%;
+margin-right: 6px;
+opacity: 0;
+animation: typing 2s infinite;
+}
+@keyframes typing {
+0% { opacity: 0.5; }
+50% { opacity: 1; }
+100% { opacity: 0.5; }
+}
+.typing-active #typing-indicator {
+opacity: 1;
+}
+#navbar {
+background-color: #f5f5f5;
+box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+padding: 10px;
+display: flex;
+align-items: center;
+border-radius: 10px;
+margin-bottom: 20px;
+}
 #navbar-brand {
-  font-weight: bold;
-  font-size: 24px;
-  color: #333;
-  text-decoration: none;
-  margin-right: auto; /* Menggeser navbar brand ke kiri */
+font-weight: bold;
+font-size: 24px;
+color: #333;
+text-decoration: none;
+margin-right: auto; /* Menggeser navbar brand ke kiri */
 }
-
 #navbar-links {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
+display: flex;
+justify-content: flex-end;
+align-items: center;
 }
-
 #navbar-links a {
-  margin-left: 15px;
-  color: #333;
-  text-decoration: none;
-  font-weight: bold;
-  transition: color 0.3s ease-in-out;
+margin-left: 15px;
+color: #333;
+text-decoration: none;
+font-weight: bold;
+transition: color 0.3s ease-in-out;
 }
-
 #navbar-links a:hover {
-  color: #555;
+color: #555;
 }
-
 #quote-container {
-  background-color: #f5f5f5;
-  padding: 10px;
-  text-align: center;
-  overflow: hidden;
+background-color: #f5f5f5;
+padding: 10px;
+text-align: center;
+overflow: hidden;
 }
-
 .text-slider {
-  animation: slide-in 5s infinite;
+animation: slide-in 5s infinite;
 }
-
 @keyframes slide-in {
-  0% {
-    transform: translateX(-100%);
-  }
-  100% {
-    transform: translateX(100%);
-  }
+0% {
+transform: translateX(-100%);
+}
+100% {
+transform: translateX(100%);
+}
+}
+.quote {
+display: inline-block;
+white-space: nowrap;
+padding-right: 100%;
+}
+.switch {
+position: relative;
+display: inline-block;
+width: 60px;
+height: 34px;
 }
 
-.quote {
-  display: inline-block;
-  white-space: nowrap;
-  padding-right: 100%;
+.switch input {
+opacity: 0;
+width: 0;
+height: 0;
 }
-  </style>
+
+.slider {
+position: absolute;
+cursor: pointer;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background-color: #ccc;
+-webkit-transition: .4s;
+transition: .4s;
+}
+
+.slider:before {
+position: absolute;
+content: "";
+height: 26px;
+width: 26px;
+left: 4px;
+bottom: 4px;
+background-color: #dddddd;
+-webkit-transition: .4s;
+transition: .4s;
+}
+
+input:checked+.slider {
+background-color: #6edc5f;
+}
+
+input:focus+.slider {
+box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked+.slider:before {
+-webkit-transform: translateX(26px);
+-ms-transform: translateX(26px);
+transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+border-radius: 34px;
+}
+
+.slider.round:before {
+border-radius: 50%;
+}
+</style>
 </head>
 <body>
-  <div id="navbar">
-  <div id="navbar-brand">Chat Aja</div>
-  <div id="navbar-links">
-    <a href="index.html">Logout</a>
-  </div>
+<div id="navbar">
+<div id="navbar-brand">Chat Aja</div>
+<div id="navbar-links">
+<label class="switch">
+<input type="checkbox" onclick="toggleMusic()" id="musicToggle">
+<span class="slider round"></span>
+</label>
+<a href="index.html">Logout</a>
 </div>
-
+</div>
 <div id="quote-container">
-  <span id="quote"></span>
+<span id="quote"></span>
 </div>
+<audio id="music" src="music.mp3" loop></audio>
+<div id="chat-container"></div>
+<div id="typing-status">
+<span id="typing-indicator"></span>
+<span id="typing-text"></span>
+</div>
+<form id="message-form">
+<input type="text" id="message-input" placeholder="kalo ngetik jangan pake perasaan...">
+<button type="submit"><i class="fas fa-paper-plane"></i></button>
+</form>
 
-
-
-
-
-  <div id="chat-container"></div>
-  <div id="typing-status">
-    <span id="typing-indicator"></span>
-    <span id="typing-text"></span>
-  </div>
-  <form id="message-form">
-    <input type="text" id="message-input" placeholder="kalo ngetik jangan pake perasaan...">
-    <button type="submit">Send</button>
-  </form>
-
-  <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-database.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-auth.js"></script>
-  <script src="app.js"></script>
-  <script src="js/sweetalert2.all.min.js"></script>
-  <script>
-    // Daftar quotes
+<script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-database.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-auth.js"></script>
+<script src="app.js"></script>
+<script src="js/sweetalert2.all.min.js"></script>
+<script>
+// Daftar quotes
 var quotes = [
-  "Bisakah hatimu seperti angsa yang hanya setia pada satu orang saja.",
-  "Cara dia ngelihat cinta akan berbeda semenjak patah hati itu.",
-  "Denganmu, jatuh cinta adalah patah hati paling sengaja.",
-  "Barangkali Tuhan sedang tidak ingin kamu jatuh cinta. Agar kamu bisa mencintai dirimu lebih lama.",
-  "Bukannya aku tidak ingin menjadi pacarmu. Aku hanya ingin dipersatukan dengan cara yang benar.",
-  "Aku seharusnya tidak cemburu, karena kamu bahkan bukan milikku.",
-  "Aku ga cemburu. Aku cuma ga suka ada orang lain yang bikin kamu ketawa selain aku.",
-  "Cinta memang layak diperjuangkan, tapi menjadi tak layak jika kamu memperjuangkannya sendirian.",
-  "Luka hati mungkin tak akan bisa sembuh. Tapi, kita tidak bisa hanya duduk dan memandangi luka itu selamanya.",
-  "Kukira melihatmu pergi adalah hal berat. Tetapi, mengetahui bahwa kau takkan pernah kembali adalah yang terberat.",
-  "Kisah kita dahulu memang benar-benar tak akan bisa terlupakan. Namun, kan selalu kuingat dan kukenang, meski luka semakin terasa sakit saat mengenangnya.",
-  "Memang masih banyak ikan di laut, tapi aku hanya inginkan dirimu seorang.",
-  "cinta tidak melihat fisik, tetapi nyatanya hatimu memang seburuk tampangmu.",
-  "Menunggu itu membosankan. Apalagi berjuang hanya membuat lelah dan broken heart.",
-  "Aku berharap kita seperti merpati, hanya setia pada satu pasangan saja.",
-  "Dan apa pun yang mungkin menyakitiku hanya akan membuatku lebih kuat pada akhirnya.",
-  "Setiap kali hatimu hancur, pintu terbuka untuk dunia yang penuh dengan permulaan baru, peluang baru.",
-  "Kau yang terbaik, juga terburuk. Kau yang mengajari arti patah hati. Kau beri harap, lalu kau pergi. Garis waktu takkan mampu menghapusmu.",
-  "Ketika sakit hati, daripada galau lebih baik kerja keras memperbaiki diri. Karena kesuksesan adalah bentuk balas dendam terbaik."
+"Bisakah hatimu seperti angsa yang hanya setia pada satu orang saja.",
+"Cara dia ngelihat cinta akan berbeda semenjak patah hati itu.",
+"Denganmu, jatuh cinta adalah patah hati paling sengaja.",
+"Barangkali Tuhan sedang tidak ingin kamu jatuh cinta. Agar kamu bisa mencintai dirimu lebih lama.",
+"Bukannya aku tidak ingin menjadi pacarmu. Aku hanya ingin dipersatukan dengan cara yang benar.",
+"Aku seharusnya tidak cemburu, karena kamu bahkan bukan milikku.",
+"Aku ga cemburu. Aku cuma ga suka ada orang lain yang bikin kamu ketawa selain aku.",
+"Cinta memang layak diperjuangkan, tapi menjadi tak layak jika kamu memperjuangkannya sendirian.",
+"Luka hati mungkin tak akan bisa sembuh. Tapi, kita tidak bisa hanya duduk dan memandangi luka itu selamanya.",
+"Kukira melihatmu pergi adalah hal berat. Tetapi, mengetahui bahwa kau takkan pernah kembali adalah yang terberat.",
+"Kisah kita dahulu memang benar-benar tak akan bisa terlupakan. Namun, kan selalu kuingat dan kukenang, meski luka semakin terasa sakit saat mengenangnya.",
+"Memang masih banyak ikan di laut, tapi aku hanya inginkan dirimu seorang.",
+"cinta tidak melihat fisik, tetapi nyatanya hatimu memang seburuk tampangmu.",
+"Menunggu itu membosankan. Apalagi berjuang hanya membuat lelah dan broken heart.",
+"Aku berharap kita seperti merpati, hanya setia pada satu pasangan saja.",
+"Dan apa pun yang mungkin menyakitiku hanya akan membuatku lebih kuat pada akhirnya.",
+"Setiap kali hatimu hancur, pintu terbuka untuk dunia yang penuh dengan permulaan baru, peluang baru.",
+"Kau yang terbaik, juga terburuk. Kau yang mengajari arti patah hati. Kau beri harap, lalu kau pergi. Garis waktu takkan mampu menghapusmu.",
+"Ketika sakit hati, daripada galau lebih baik kerja keras memperbaiki diri. Karena kesuksesan adalah bentuk balas dendam terbaik."
 ];
 
 // Mengambil quote secara acak
 function getRandomQuote() {
-  var randomIndex = Math.floor(Math.random() * quotes.length);
-  return quotes[randomIndex];
+var randomIndex = Math.floor(Math.random() * quotes.length);
+return quotes[randomIndex];
 }
 
 // Memperbarui quote pada elemen span
 function updateQuote() {
-  var quoteElement = document.getElementById("quote");
-  quoteElement.textContent = getRandomQuote();
+var quoteElement = document.getElementById("quote");
+quoteElement.textContent = getRandomQuote();
 }
 
 // Memperbarui quote secara periodik
 setInterval(updateQuote, 5000)
-  </script>
-  <script>
-    const profileLink = document.getElementById("profile-link");
-    const logoutLink = document.getElementById("logout-link");
-    const usernameElement = document.getElementById("username");
+</script>
+<script>
+const profileLink = document.getElementById("profile-link");
+const logoutLink = document.getElementById("logout-link");
+const usernameElement = document.getElementById("username");
 
-    // Mendapatkan username dari local storage atau sumber data lainnya
-    const username = localStorage.getItem("username");
-    usernameElement.textContent = username;
+// Mendapatkan username dari local storage atau sumber data lainnya
+const username = localStorage.getItem("username");
+usernameElement.textContent = username;
 
-    // Handler untuk link profil
-    profileLink.addEventListener("click", function(event) {
-      event.preventDefault();
-      // Navigasi ke halaman profil
-      // Gantilah URL berikut sesuai dengan halaman profil Anda
-      window.location.href = "/profile.html";
-    });
+// Handler untuk link profil
+profileLink.addEventListener("click", function(event) {
+event.preventDefault();
+// Navigasi ke halaman profil
+// Gantilah URL berikut sesuai dengan halaman profil Anda
+window.location.href = "/profile.html";
+});
 
-    // Handler untuk link logout
-    logoutLink.addEventListener("click", function(event) {
-      event.preventDefault();
-      // Lakukan proses logout di sini
-      // Misalnya, hapus token atau hapus data yang tersimpan di local storage
-      // Redirect ke halaman login atau halaman lain yang sesuai
-      window.location.href = "/login.html";
-    });
-  </script>
+// Handler untuk link logout
+logoutLink.addEventListener("click", function(event) {
+event.preventDefault();
+// Lakukan proses logout di sini
+// Misalnya, hapus token atau hapus data yang tersimpan di local storage
+// Redirect ke halaman login atau halaman lain yang sesuai
+window.location.href = "/login.html";
+});
+</script>
+<script>
+function toggleMusic() {
+var musicElement = document.getElementById("music");
+var musicToggle = document.getElementById("musicToggle");
+
+if (musicToggle.checked) {
+musicElement.play();
+} else {
+musicElement.pause();
+}
+}
+</script>
 </body>
 </html>

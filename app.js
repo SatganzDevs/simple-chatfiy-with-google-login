@@ -1,12 +1,12 @@
 const firebaseConfig = {
   apiKey: "AIzaSyDmARGTPwXAOISComZKLaRx8RSXXnnvXbA",
-    authDomain: "satganzdevs-596e7.firebaseapp.com",
-    databaseURL: "https://satganzdevs-596e7-default-rtdb.firebaseio.com",
-    projectId: "satganzdevs-596e7",
-    storageBucket: "satganzdevs-596e7.appspot.com",
-    messagingSenderId: "851869836628",
-    appId: "1:851869836628:web:922f8495577d6a15f314c1",
-    measurementId: "G-Q2VBQXTDZD"
+  authDomain: "satganzdevs-596e7.firebaseapp.com",
+  databaseURL: "https://satganzdevs-596e7-default-rtdb.firebaseio.com",
+  projectId: "satganzdevs-596e7",
+  storageBucket: "satganzdevs-596e7.appspot.com",
+  messagingSenderId: "851869836628",
+  appId: "1:851869836628:web:922f8495577d6a15f314c1",
+  measurementId: "G-Q2VBQXTDZD"
 };
 
 // Inisialisasi Firebase
