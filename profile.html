@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background-color: #f5f5f5;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        
+        #profile-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        #profile-info {
+            margin-bottom: 20px;
+        }
+        
+        #profile-info span {
+            display: block;
+            margin-bottom: 10px;
+        }
+        
+        #edit-profile {
+            text-align: center;
+        }
+        
+        #edit-profile button {
+            padding: 10px;
+            background-color: limegreen;
+            color: #fff;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        #edit-profile button:hover {
+            background-color: lime;
+        }
+    </style>
+</head>
+<body>
+    <div id="profile-container">
+        <h1>Profile</h1>
+        <div id="profile-info">
+            <span><strong>Username:</strong> <span id="username"></span></span>
+        </div>
+        <div id="edit-profile">
+            <button id="edit-button">Back</button>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-auth.js"></script>
+    <script>
+        const usernameElement = document.getElementById("username");
+        const emailElement = document.getElementById("email");
+
+        // Mendapatkan username dan email dari local storage atau sumber data lainnya
+        const username = localStorage.getItem("username");
+        const email = localStorage.getItem("email");
+
+        usernameElement.textContent = username;
+        emailElement.textContent = email;
+
+        // Handler untuk tombol Edit Profile
+        const editButton = document.getElementById("edit-button");
+        editButton.addEventListener("click", function() {
+            // Redirect ke halaman edit profil
+            // Gantilah URL berikut sesuai dengan halaman edit profil Anda
+            window.location.href = "/home.html";
+        });
+    </script>
+</body>
+</html>
