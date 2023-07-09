@@ -9,234 +9,259 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 <style>
 body {
-background-color: #f5f5f5;
-font-family: Arial, sans-serif;
-margin: 0;
-padding: 0;
+  background-color: #f5f5f5;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
 }
+
+/* Navbar */
+#navbar {
+  background-color: #333;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#navbar-brand {
+  font-weight: bold;
+  font-size: 24px;
+  color: #fff;
+  text-decoration: none;
+}
+
+#navbar-links a {
+  margin-left: 15px;
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease-in-out;
+}
+
+#navbar-links a:hover {
+  color: #ccc;
+}
+
+/* Chat Container */
 #chat-container {
-margin: auto;
-text-align: left;
-overflow: auto;
-height: 70vh;
-width: 70vw;
-border: 3px black solid;
-border-radius: 15px;
+  margin: auto;
+  text-align: left;
+  overflow: auto;
+  height: 65vh;
+  width: 70vw;
+  border: 3px solid #333;
+  border-radius: 15px;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 20px;
 }
 
-#chat-container::-webkit-scrollbar-track{
-border-radius: 15px;
-background-color: gainsboro;
-}
-
-#chat-container::-webkit-scrollbar{
-width: 20px;
-}
-
-#chat-container::-webkit-scrollbar-thumb{
-height: 15px;
-border-radius: 15px;
-background-color: limegreen;
-}
-p {
-text-align: left;
-padding: 0px 10px;
-font-family: Pangolin;
-font-size: 16px;
-animation: fade_in 0.3s;
-}  
+/* Message Styling */
 .message {
-margin-bottom: 15px;
-position: relative;
+  margin-bottom: 15px;
 }
+
 .message .sender {
-font-weight: bold;
-margin-right: 5px;
+  font-weight: bold;
+  margin-right: 5px;
 }
+
 .message .content {
-padding: 10px;
-border-radius: 10px;
-background-color: #e5e5ea;
-display: inline-block;
-max-width: 70%; /* Atur lebar maksimum sesuai kebutuhan */
+  padding: 10px;
+  border-radius: 10px;
+  background-color: #e5e5ea;
+  display: inline-block;
+  max-width: 70%; /* Atur lebar maksimum sesuai kebutuhan */
 }
+
 .message.sent .content {
-background-color: #dcf8c6;
+  background-color: #dcf8c6;
 }
+
 .message.received .content {
-background-color: #fff;
+  background-color: #fff;
+}
+.message .time {
+  font-size: 12px;
+  color: #999;
+  margin-left: 10px;
 }
 #message-form {
-display: flex;
-margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  align-items: center;
+  text-align: center;
 }
+
+.input-container {
+  display: flex;
+  align-items: center;
+}
+
 #message-input {
-flex-grow: 1;
-padding: 10px;
-border: 1px solid #ccc;
-border-radius: 5px;
+  flex-grow: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
-#message-form button {
-padding: 10px;
-background-color: limegreen;
-color: #fff;
-font-weight: bold;
-border: none;
-border-radius: 5px;
-cursor: pointer;
+
+button[type="submit"] {
+  padding: 10px;
+  background-color: #4CAF50;
+  color: #fff;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 10px;
+  transition: background-color 0.3s ease-in-out;
 }
-#message-form button:hover {
-background-color: lime;
+
+button[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+button[type="submit"] i {
+  margin-right: 5px;
 }
 #profile-nav {
-display: flex;
-justify-content: flex-end;
-align-items: center;
-padding: 10px;
-background-color: #fff;
-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-border-radius: 10px;
-margin-bottom: 20px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 10px;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  margin-bottom: 20px;
 }
+
 #profile-nav a {
-margin-left: 10px;
-color: #333;
-text-decoration: none;
-}
-#typing-status {
-display: flex;
-align-items: center;
-margin-bottom: 10px;
-color: #000000;
-}
-#typing-indicator {
-width: 10px;
-height: 10px;
-background-color: limegreen;
-border-radius: 50%;
-margin-right: 6px;
-opacity: 0;
-animation: typing 2s infinite;
-}
-@keyframes typing {
-0% { opacity: 0.5; }
-50% { opacity: 1; }
-100% { opacity: 0.5; }
-}
-.typing-active #typing-indicator {
-opacity: 1;
+  margin-left: 10px;
+  color: #333;
+  text-decoration: none;
 }
 #navbar {
-background-color: #f5f5f5;
-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-padding: 10px;
-display: flex;
-align-items: center;
-border-radius: 10px;
-margin-bottom: 20px;
+  background-color: #f5f5f5;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  border-radius: 10px;
+  margin-bottom: 20px;
 }
+
 #navbar-brand {
-font-weight: bold;
-font-size: 24px;
-color: #333;
-text-decoration: none;
-margin-right: auto; /* Menggeser navbar brand ke kiri */
+  font-weight: bold;
+  font-size: 24px;
+  color: #333;
+  text-decoration: none;
+  margin-right: auto; /* Menggeser navbar brand ke kiri */
 }
+
 #navbar-links {
-display: flex;
-justify-content: flex-end;
-align-items: center;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 }
+
 #navbar-links a {
-margin-left: 15px;
-color: #333;
-text-decoration: none;
-font-weight: bold;
-transition: color 0.3s ease-in-out;
+  margin-left: 15px;
+  color: #333;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease-in-out;
 }
+
 #navbar-links a:hover {
-color: #555;
+  color: #555;
 }
+
 #quote-container {
-background-color: #f5f5f5;
-padding: 10px;
-text-align: center;
-overflow: hidden;
+  background-color: #f5f5f5;
+  padding: 10px;
+  text-align: center;
+  overflow: hidden;
 }
+
 .text-slider {
-animation: slide-in 5s infinite;
+  animation: slide-in 5s infinite;
 }
+
 @keyframes slide-in {
-0% {
-transform: translateX(-100%);
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
 }
-100% {
-transform: translateX(100%);
-}
-}
+
 .quote {
-display: inline-block;
-white-space: nowrap;
-padding-right: 100%;
+  display: inline-block;
+  white-space: nowrap;
+  padding-right: 100%;
 }
+
 .switch {
-position: relative;
-display: inline-block;
-width: 60px;
-height: 34px;
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
 }
 
 .switch input {
-opacity: 0;
-width: 0;
-height: 0;
+  opacity: 0;
+  width: 0;
+  height: 0;
 }
 
 .slider {
-position: absolute;
-cursor: pointer;
-top: 0;
-left: 0;
-right: 0;
-bottom: 0;
-background-color: #ccc;
--webkit-transition: .4s;
-transition: .4s;
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
 }
 
 .slider:before {
-position: absolute;
-content: "";
-height: 26px;
-width: 26px;
-left: 4px;
-bottom: 4px;
-background-color: #dddddd;
--webkit-transition: .4s;
-transition: .4s;
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: #dddddd;
+  -webkit-transition: .4s;
+  transition: .4s;
 }
 
-input:checked+.slider {
-background-color: #6edc5f;
+input:checked + .slider {
+  background-color: #6edc5f;
 }
 
-input:focus+.slider {
-box-shadow: 0 0 1px #2196F3;
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
 }
 
-input:checked+.slider:before {
--webkit-transform: translateX(26px);
--ms-transform: translateX(26px);
-transform: translateX(26px);
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
 }
 
 /* Rounded sliders */
 .slider.round {
-border-radius: 34px;
+  border-radius: 34px;
 }
 
 .slider.round:before {
-border-radius: 50%;
+  border-radius: 50%;
 }
 </style>
 </head>
@@ -256,14 +281,15 @@ border-radius: 50%;
 </div>
 <audio id="music" src="music.mp3" loop></audio>
 <div id="chat-container"></div>
-<div id="typing-status">
-<span id="typing-indicator"></span>
-<span id="typing-text"></span>
-</div>
 <form id="message-form">
-<input type="text" id="message-input" placeholder="kalo ngetik jangan pake perasaan...">
+<div class="input-container">
+<input type="text" id="message-input" placeholder="Ketik pesan...">
 <button type="submit"><i class="fas fa-paper-plane"></i></button>
+</div>
 </form>
+
+
+
 
 <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-database.js"></script>
@@ -308,32 +334,6 @@ quoteElement.textContent = getRandomQuote();
 
 // Memperbarui quote secara periodik
 setInterval(updateQuote, 5000)
-</script>
-<script>
-const profileLink = document.getElementById("profile-link");
-const logoutLink = document.getElementById("logout-link");
-const usernameElement = document.getElementById("username");
-
-// Mendapatkan username dari local storage atau sumber data lainnya
-const username = localStorage.getItem("username");
-usernameElement.textContent = username;
-
-// Handler untuk link profil
-profileLink.addEventListener("click", function(event) {
-event.preventDefault();
-// Navigasi ke halaman profil
-// Gantilah URL berikut sesuai dengan halaman profil Anda
-window.location.href = "/profile.html";
-});
-
-// Handler untuk link logout
-logoutLink.addEventListener("click", function(event) {
-event.preventDefault();
-// Lakukan proses logout di sini
-// Misalnya, hapus token atau hapus data yang tersimpan di local storage
-// Redirect ke halaman login atau halaman lain yang sesuai
-window.location.href = "/login.html";
-});
 </script>
 <script>
 function toggleMusic() {

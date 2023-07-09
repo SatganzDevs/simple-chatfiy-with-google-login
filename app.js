@@ -1,12 +1,12 @@
 const firebaseConfig = {
-  apiKey: "AIzaSyDmARGTPwXAOISComZKLaRx8RSXXnnvXbA",
-  authDomain: "satganzdevs-596e7.firebaseapp.com",
-  databaseURL: "https://satganzdevs-596e7-default-rtdb.firebaseio.com",
-  projectId: "satganzdevs-596e7",
-  storageBucket: "satganzdevs-596e7.appspot.com",
-  messagingSenderId: "851869836628",
-  appId: "1:851869836628:web:922f8495577d6a15f314c1",
-  measurementId: "G-Q2VBQXTDZD"
+  apiKey: "AIzaSyAT9VvvF2qCxrVZZme6WIWMik4ooQDM3wI",
+  authDomain: "anjas-6e82c.firebaseapp.com",
+  databaseURL: "https://anjas-6e82c-default-rtdb.firebaseio.com",
+  projectId: "anjas-6e82c",
+  storageBucket: "anjas-6e82c.appspot.com",
+  messagingSenderId: "849134901980",
+  appId: "1:849134901980:web:c5ffc8edf400bcf4587219",
+  measurementId: "G-8NHCJGQCS1"
 };
 
 // Inisialisasi Firebase
@@ -23,38 +23,51 @@ document.getElementById('message-form').addEventListener('submit', sendMessage);
 // Menangani kejadian ketika pengguna mengetik
 document.getElementById('message-input').addEventListener('input', handleTyping);
 
-// Mencatat status pengguna ketika mengetik
+function getCurrentDateTime() {
+  var now = new Date();
+  var dateTimeString = now.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true }) + ', ' + now.toLocaleDateString('en-US');
+  return dateTimeString;
+}
+
 function handleTyping() {
-  var user = firebase.auth().currentUser;
-  typingRef.child(user.uid).set(user.displayName);
+  var user = localStorage.getItem("username");
+  typingRef.child(user).set(user);
   setTimeout(function() {
-    typingRef.child(user.uid).remove();
+    typingRef.child(user).remove();
   }, 2000);
 }
-// Mengirim Pesan
+
 function sendMessage(e) {
   e.preventDefault();
 
   var messageInput = document.getElementById('message-input');
   var message = messageInput.value;
-  var user = firebase.auth().currentUser;
+  var user = localStorage.getItem("username");
 
-  // Check if the user is logged in
+  // Periksa apakah pengguna sudah login dan ada pesan yang diketik
   if (message && user) {
+    // Kirim pesan ke Firebase Realtime Database
     var newMessageRef = messagesRef.push();
     newMessageRef.set({
-      sender: localStorage.getItem("username"),
-      content: message
+      sender: user,
+      content: message,
+      timestamp: getCurrentDateTime()
     });
 
-    messageInput.value = '';
-  } else {
-    // Handle the case when the user is not logged in
+    messageInput.value = ''; // Bersihkan input pesan setelah terkirim
+  } else if (!message) {
+    // Handle ketika tidak ada pesan yang diketik
     window.swal({
-        title: 'Hai kak',
-        text: 'Login Dulu kak',
-      })
-    window.location.href = "index.html";
+      title: 'Perhatian',
+      text: 'Pesan kosong. Mohon masukkan pesan Anda.',
+    });
+  } else {
+    // Handle ketika pengguna belum login
+    window.swal({
+      title: 'Perhatian',
+      text: 'Anda belum login. Silakan login terlebih dahulu.',
+    });
+    window.location.href = "index.html"; // Ganti dengan halaman login yang sesuai
   }
 }
 
@@ -71,9 +84,16 @@ messagesRef.on('child_added', function(snapshot) {
   senderElement.textContent = message.sender + ': ';
 
   var contentElement = document.createElement('span');
+  contentElement.className = 'content';
   contentElement.textContent = message.content;
+
+  var timeElement = document.createElement('span');
+  timeElement.className = 'time';
+  timeElement.textContent = message.timestamp; // Memperoleh waktu pesan
+
   messageElement.appendChild(senderElement);
   messageElement.appendChild(contentElement);
+  messageElement.appendChild(timeElement);
   chatContainer.appendChild(messageElement);
 
   if (message.sender !== currentUser) {
@@ -84,9 +104,10 @@ messagesRef.on('child_added', function(snapshot) {
   setTimeout(function() {
     snapshot.ref.remove();
   }, 24 * 60 * 60 * 1000); // 24 jam dalam milidetik
-});
 
-// JavaScript yang sudah ada sebelumnya
+  // Scroll ke bawah untuk melihat pesan terbaru
+  chatContainer.scrollTop = chatContainer.scrollHeight;
+});
 
 // Menerima perubahan status ketik dari pengguna lain
 typingRef.on('child_added', function(snapshot) {

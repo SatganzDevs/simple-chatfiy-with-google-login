@@ -1,14 +1,14 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
 const firebaseConfig = {
-  apiKey: "AIzaSyDmARGTPwXAOISComZKLaRx8RSXXnnvXbA",
-  authDomain: "satganzdevs-596e7.firebaseapp.com",
-  databaseURL: "https://satganzdevs-596e7-default-rtdb.firebaseio.com",
-  projectId: "satganzdevs-596e7",
-  storageBucket: "satganzdevs-596e7.appspot.com",
-  messagingSenderId: "851869836628",
-  appId: "1:851869836628:web:922f8495577d6a15f314c1",
-  measurementId: "G-Q2VBQXTDZD"
+ apiKey: "AIzaSyAT9VvvF2qCxrVZZme6WIWMik4ooQDM3wI",
+  authDomain: "anjas-6e82c.firebaseapp.com",
+  databaseURL: "https://anjas-6e82c-default-rtdb.firebaseio.com",
+  projectId: "anjas-6e82c",
+  storageBucket: "anjas-6e82c.appspot.com",
+  messagingSenderId: "849134901980",
+  appId: "1:849134901980:web:c5ffc8edf400bcf4587219",
+  measurementId: "G-8NHCJGQCS1"
 };
 
 const app = initializeApp(firebaseConfig);
